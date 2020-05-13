@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useEffect } from 'react';
-
+import axios from 'axios';
 function App() {
   const [something,setSomething] = useState([])
 
@@ -14,9 +14,9 @@ function App() {
 
   useEffect(() => {
     console.log("hello")
-    fetch('https://pokeapi.co/api/v2/pokemon')
-        .then(response => response.json())
-        .then(response => setSomething(response.results))
+    axios.get('https://pokeapi.co/api/v2/pokemon').then(response=>{
+    setSomething(response.data.results);
+})
 },[]);
 
 
