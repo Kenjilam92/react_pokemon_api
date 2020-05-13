@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { useEffect } from 'react';
+
 function App() {
   const [something,setSomething] = useState([])
 
@@ -9,6 +11,14 @@ function App() {
       .then(res => setSomething(res.results))
       .catch(err =>{console.log(err);});
   }          
+
+  useEffect(() => {
+    console.log("hello")
+    fetch('https://pokeapi.co/api/v2/pokemon')
+        .then(response => response.json())
+        .then(response => setSomething(response.results))
+},[]);
+
 
   return (
     <div className="jumbotron">
